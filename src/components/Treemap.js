@@ -95,7 +95,7 @@ function Treemap({ width, height, data, token, selectedOption, setSelectedOffice
       // initialize treemap
       d3.treemap()
           .size([width, height])
-          .paddingTop(24)
+          .paddingTop(1)
           .paddingLeft(1)
           .paddingRight(1)
           .paddingInner(2)
@@ -133,24 +133,12 @@ function Treemap({ width, height, data, token, selectedOption, setSelectedOffice
       // add the values
       nodeVals.enter()
           .append("text")
-            .attr("x", d => (d.x0 + d.x1)/2 - 15)
+            .attr("x", d => (d.x0 + d.x1)/2 - 35)
             .attr("y", d => (d.y0 + d.y1)/2 + 5)
             .text(d => d.data.size < 5 ? "" : d.data.offices_n)
-            .attr("font-size", "12px")
+            .attr("font-size", "32px")
             .attr("class", "unselectable")
             .attr("fill", "white")
-  
-      // add the parent node titles
-      svg
-      .selectAll("titles")
-      .data(root.descendants().filter(d => d.depth === 1))
-      .enter()
-      .append("text")
-          .attr("x", d => d.x0)
-          .attr("y", d => d.y0 + 20)
-          .text(d => d.data.region_name)
-          .attr("font-size", "12px")
-          .attr();
       
       svg
       .selectAll("*")

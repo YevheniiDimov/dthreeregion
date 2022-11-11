@@ -11,11 +11,12 @@ import {
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
+const region = "Полтавська";
 let token = null;
 
 function App() {
   const [tree, setTree] = useState(null);
-  const [screenSize, setScreenSize] = useState([window.innerWidth - 5, window.innerHeight - 130]);
+  const [screenSize, setScreenSize] = useState([window.innerWidth - 5, window.innerHeight - 135]);
   const [selectedOption, setSelectedOption] = useState("accuracy");
   const [options, setOptions] = useState([]);
   const [selectedOffice, setSelectedOffice] = useState(null);
@@ -40,6 +41,9 @@ function App() {
       let offices_promises = [];
 
       for (let i = 0; i < temp.length; i++) {
+        if (temp[i].region_name !== region) {
+          continue;
+        }
         let myHeaders = new Headers();
         myHeaders.append("Authorization", token);
 
@@ -143,7 +147,7 @@ function App() {
     }
   }, [selectedOffice]);
 
-  console.log('Update0611: 0.9');
+  console.log('Update1111: 0.1');
 
   window.addEventListener("resize", () => 
     setScreenSize([window.innerWidth - 10, window.innerHeight - 130]));
@@ -151,7 +155,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <nav className="navbar navbar-light bg-light">
+        <nav className="navbar navbar-light bg-dark text-white">
+          <h3 className='mx-2 my-auto'>{region}</h3>
           <div className='container col-4'>
             <NavLink className={({ isActive }) => 
               (isActive ? "nav-link fw-bold" : "nav-link")} to="/">Діаграма</NavLink>
