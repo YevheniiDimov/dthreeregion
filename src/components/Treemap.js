@@ -174,7 +174,7 @@ function Treemap({ width, height, data, token, selectedOption, setSelectedOffice
         { receivedValues 
         ? <div>
             <svg ref={ref} id={"treemap-svg"}/>
-            { selectedOption == 'accuracy' ?
+            { selectedOption === 'accuracy' ?
               <LegendThreshold
               scale={color}
               direction="row"
@@ -202,7 +202,10 @@ function Treemap({ width, height, data, token, selectedOption, setSelectedOffice
             />
             }
             </div>
-        : <h1>{message}</h1>
+        : <div>
+            <div className="spinner-border text-dark mt-5" role="status" />
+            <h3>{message}</h3>
+          </div>
         }
         { selectedOffice[0] != null
           ? <OfficePopup mousePosition={selectedOffice[1]} 

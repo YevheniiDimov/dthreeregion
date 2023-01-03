@@ -38,14 +38,16 @@ function ServicesDataController({office_data, token}) {
     useEffect(() => {
         if (!receivedValues) {
             retrieveServices(data, token, setServices);
-            setReceivedValues(true);
         }
     }, [data]);
 
     return (
         <div>
-            { receivedValues ? <Service office={office_data} services={services} /> 
-            : <h1>Отримання даних послуг...</h1>}
+            { services ? <Service office={office_data} services={services} /> 
+            : <div>
+                <div className="spinner-border text-dark mt-5" role="status" />
+                <h3>Отримання даних послуг...</h3>
+            </div>}
         </div>
     )
 }

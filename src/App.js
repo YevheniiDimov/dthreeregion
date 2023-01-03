@@ -11,7 +11,7 @@ import {
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
-const region = "Полтавська";
+const region = "Чернігівська";
 let token = null;
 
 function App() {
@@ -39,7 +39,8 @@ function App() {
       .then(async result => {
       let temp = JSON.parse(result).rows.filter(region => region.id_region !== 24);
       let offices_promises = [];
-
+      console.log('Regions');
+      console.log(temp);
       for (let i = 0; i < temp.length; i++) {
         if (temp[i].region_name !== region) {
           continue;
@@ -156,13 +157,13 @@ function App() {
     <div className="App">
       <Router>
         <nav className="navbar navbar-light bg-dark text-white">
-          <h3 className='mx-2 my-auto'>{region}</h3>
-          <div className='container col-4'>
+          <h3 className='mx-3 my-auto'>{region}</h3>
+          <div className='container col-6'>
             <NavLink className={({ isActive }) => 
               (isActive ? "nav-link fw-bold" : "nav-link")} to="/">Діаграма</NavLink>
             {selectedOffice ?
             <NavLink className={({ isActive }) => 
-              (isActive ? "nav-link fw-bold" : "nav-link")} to="/services">Сервіси офіса {selectedOffice.offices_name}</NavLink>
+              (isActive ? "nav-link fw-bold" : "nav-link")} to="/services">{selectedOffice.offices_name}</NavLink>
             : ''}
           </div>
         </nav>

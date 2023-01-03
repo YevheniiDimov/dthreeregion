@@ -15,7 +15,10 @@ function TreemapDataController({tree, screenSize, options, selectedOption, token
                     <Treemap width={screenSize[0]} height={screenSize[1]} data={tree} token={token} selectedOption={selectedOption}
                         setSelectedOfficeHandler={setSelectedOfficeHandler} />
               </div>
-              : <h1>Завантаження даних...</h1>}
+              : <div>
+                    <div className="spinner-border text-dark mt-5" role="status" />
+                    <h3>Завантаження даних...</h3>
+                </div>}
         </div>
     )
 }
